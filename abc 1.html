@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miami Green Scape - Premier Landscaping</title>
+    <meta name="description" content="Transform your Miami outdoor space into a lush, tropical paradise with Miami Green Scape's expert landscaping services.">
+    <meta name="author" content="Miami Green Scape">
+    <meta property="og:image" content="/og-image.png"> <!-- Replace with actual OG image -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Bootstrap CSS (using local reference as per user's prompt) -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Define custom CSS variables for colors and fonts for consistent inline styles */
+        :root {
+            --bs-body-color: #333;
+            --bs-primary-green: #2E7D32; /* Deeper Green */
+            --bs-dark-green: #1B5E20; /* Darker Green on hover */
+            --bs-accent-green: #A7C957; /* Light green for accents */
+            --bs-darker-green-bg: #386641; /* Dark Green accent for nav, sections */
+            --bs-amber: #FFC107; /* Amber/Gold accent */
+            --bs-dark-amber: #FFA000; /* Darker Amber on hover */
+            --bs-light-grey: #F8F9FA; /* Very light grey */
+            --bs-light-green-bg: #EAF7E8; /* Lighter green for backgrounds */
+
+            --bs-light-text: #F0F0F0; /* Light text on dark bg */
+
+            --font-montserrat: 'Montserrat', sans-serif;
+            --font-playfair-display: 'Playfair Display', serif;
+        }
+
+        /* General Body and Heading Font Styles */
+        body {
+            font-family: var(--font-montserrat);
+            color: var(--bs-body-color);
+            background-color: var(--bs-light-grey);
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-playfair-display);
+        }
+
+        /* 3D Text Glow Effect for Hero H1 and Navbar Logo */
+        .text-glow-3d {
+            color: #FFF; /* Base color for the main text parts (e.g., "Loves") */
+            /* Text-shadow layers for 3D depth and glow */
+            text-shadow:
+                /* Depth layers (simulated 3D effect) */
+                1px 1px 0 rgba(255, 255, 255, 0.7), /* Light grey for subtle depth */
+                2px 2px 0 rgba(255, 255, 255, 0.5),
+                3px 3px 0 rgba(255, 255, 255, 0.3),
+                4px 4px 0 rgba(255, 255, 255, 0.1),
+                5px 5px 0 rgba(255, 255, 255, 0.05), /* Fainter for more depth */
+
+                /* Outer Glow layers (using accent green and white for luminosity) */
+                0 0 15px var(--bs-accent-green),      /* Main green glow */
+                0 0 25px var(--bs-accent-green),      /* Stronger green glow */
+                0 0 40px rgba(167, 201, 87, 0.6),    /* Wider, softer green glow */
+                0 0 60px rgba(167, 201, 87, 0.3);    /* Faintest, widest green halo */
+        }
+
+
+        /* Card Hover Effect (Requires non-inline CSS for :hover pseudo-class) */
+        .card-hover-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-10px); /* More pronounced lift */
+            box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.175) !important; /* Stronger shadow on hover */
+        }
+
+        /* Custom Button Styles (re-using Bootstrap's btn class) */
+        .btn-primary-custom {
+            background-color: var(--bs-primary-green);
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3); /* Initial shadow matching color */
+        }
+        .btn-primary-custom:hover {
+            background-color: var(--bs-dark-green);
+            color: white;
+            transform: scale(1.05); /* Slightly larger */
+            box-shadow: 0 8px 20px rgba(27, 94, 32, 0.4); /* Stronger shadow on hover */
+        }
+        .btn-secondary-custom {
+            background-color: var(--bs-amber);
+            color: var(--bs-body-color);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3); /* Initial shadow matching color */
+        }
+        .btn-secondary-custom:hover {
+            background-color: var(--bs-dark-amber);
+            color: var(--bs-body-color);
+            transform: scale(1.05); /* Slightly larger */
+            box-shadow: 0 8px 20px rgba(255, 160, 0, 0.4); /* Stronger shadow on hover */
+        }
+
+        /* Fade-In-Up Animation (Requires non-inline CSS for @keyframes) */
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards; /* Slightly longer animation */
+            opacity: 0;
+        }
+        /* Class added by JS on scroll intersection */
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px); /* Starts from lower */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Nav Logo */
+        .nav-logo {
+            font-family: var(--font-playfair-display);
+            font-weight: 800;
+            font-size: 1.85rem; /* Slightly larger */
+            color: white;
+            transition: color 0.3s ease;
+        }
+        .nav-logo:hover {
+            color: var(--bs-accent-green); /* Hover effect on logo */
+        }
+
+        /* Nav Link Underline Effect on Hover (Requires non-inline CSS for :after pseudo-element) */
+        .nav-link-custom {
+            position: relative;
+            padding-bottom: 0.3rem; /* Slightly more space for underline */
+            color: white !important;
+            font-size: 1.1rem; /* Slightly larger text */
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+        .nav-link-custom::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px; /* Thicker underline */
+            background-color: var(--bs-amber);
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link-custom:hover::after {
+            width: 100%;
+        }
+        .nav-link-custom:hover {
+            color: var(--bs-accent-green) !important;
+        }
+        /* Active link style, if needed */
+        .nav-link-custom.active {
+            color: var(--bs-accent-green) !important;
+            font-weight: 600;
+        }
+        .nav-link-custom.active::after {
+            width: 100%;
+            background-color: var(--bs-accent-green);
+        }
+
+        /* Service Icon Wrapper for Infographic effect */
+        .service-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background-color: var(--bs-accent-green); /* Light green circle */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem; /* Space below icon */
+            box-shadow: 0 5px 15px rgba(167, 201, 87, 0.4); /* Subtle shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-icon-wrapper:hover {
+            transform: scale(1.08); /* Slightly pop on hover */
+            box-shadow: 0 8px 20px rgba(167, 201, 87, 0.6); /* More pronounced shadow */
+        }
+        .service-icon-wrapper i {
+            color: white; /* White icon color */
+            font-size: 2.25rem; /* Larger icon inside circle */
+        }
+
+
+        /* Testimonial Card */
+        .testimonial-card {
+            background: white;
+            border-left: 6px solid var(--bs-primary-green); /* Slightly thicker border */
+            border-radius: 0.75rem; /* More rounded */
+            padding: 2.5rem; /* More internal padding */
+        }
+        .testimonial-card .fas.fa-star {
+            color: var(--bs-amber); /* Ensure consistent star color */
+            font-size: 1.75rem; /* Larger stars */
+            margin-right: 0.25rem;
+        }
+        .testimonial-card .fst-italic {
+            font-size: 1.15rem; /* Slightly larger quote text */
+            line-height: 1.7; /* Better readability */
+        }
+
+        /* Custom Form Control Styles for Contact Section */
+        .form-control-custom {
+            background-color: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            padding: 0.9rem 1.25rem; /* More padding */
+            border-radius: 0.75rem; /* More rounded */
+        }
+        .form-control-custom::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .form-control-custom:focus {
+            background-color: rgba(255, 255, 255, 0.25); /* More opaque on focus */
+            border-color: var(--bs-amber);
+            box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.5);
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-light text-dark">
+    <div id="root">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg sticky-top py-3 shadow-lg" style="background-color: var(--bs-darker-green-bg);">
+            <div class="container-fluid px-4 px-md-5 px-lg-5">
+                <a class="navbar-brand nav-logo d-flex align-items-center text-decoration-none" href="#">
+                    <i class="fas fa-leaf me-2 text-glow-3d" style="color: var(--bs-accent-green);"></i>
+                    <span class="text-glow-3d">Miami Loves Green Landscaping</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
+                    <i class="fas fa-bars text-white fs-4"></i>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center mt-3 mt-lg-0">
+                        <li class="nav-item me-lg-4 mb-2 mb-lg-0">
+                            <a class="nav-link nav-link-custom" href="#services">Services</a>
+                        </li>
+                        <li class="nav-item me-lg-4 mb-2 mb-lg-0">
+                            <a class="nav-link nav-link-custom" href="#about">About Us</a>
+                        </li>
+                        <li class="nav-item me-lg-4 mb-2 mb-lg-0">
+                            <a class="nav-link nav-link-custom" href="#gardening-article">Gardening Article</a>
+                        </li>
+                        <li class="nav-item me-lg-4 mb-2 mb-lg-0">
+                            <a class="nav-link nav-link-custom" href="#contact">Contact</a>
+                        </li>
+                        <li class="nav-item me-lg-3 mb-2 mb-lg-0">
+                            <a href="https://www.facebook.com/azakin.sejour" target="_blank" rel="noopener noreferrer" class="nav-link text-white" style="font-size: 1.75rem; transition: color 0.3s ease;">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.youtube.com/@MiamiLovesGreenLandscaping" target="_blank" rel="noopener noreferrer" class="nav-link text-white" style="font-size: 1.75rem; transition: color 0.3s ease;">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Hero Section -->
+            <div class="position-relative d-flex align-items-center justify-content-center text-center vh-100 overflow-hidden"
+                style="background-image: url('image.jpeg');
+                       background-size: cover;
+                       background-position: center;
+                       background-attachment: fixed;">
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.55);"></div>
+                <div class="position-relative z-1 px-4 fade-in-up">
+                    <h1 class="display-1 fw-bold mb-4 text-glow-3d"
+                        style="line-height: 1.2;">
+                        <span style="color: var(--bs-accent-green);">Miami Loves</span> <br>
+                        <span style="color: var(--bs-accent-green);">Landscaping</span>.
+                    </h1>
+                    <p class="fs-4 mb-5 mx-auto" style="max-width: 700px; color: #E0E0E0; text-shadow: 0 1px 3px rgba(0,0,0,0.4);">
+                        Transform your outdoor space into a breathtaking paradise with South Florida's premier landscaping service.
+                    </p>
+                    <a href="#contact" class="btn btn-primary-custom btn-lg fw-semibold px-5 py-3 rounded-pill shadow-lg">
+                        Get Your Free Consultation <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Services Section -->
+            <section id="services" class="py-5 py-lg-6"
+                style="background: linear-gradient(135deg, var(--bs-light-green-bg) 0%, var(--bs-light-grey) 100%);">
+                <div class="container px-4 px-md-5 px-lg-5 my-5">
+                    <div class="text-center mb-5 fade-in-up">
+                        <h2 class="display-4 fw-bold mb-4" style="color: var(--bs-darker-green-bg);">Services Offered</h2>
+                        <p class="fs-5 text-secondary mx-auto" style="max-width: 800px;">We offer a comprehensive range of landscaping solutions tailored to your vision and Miami's unique climate, ensuring beauty and sustainability.</p>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0s;">
+                            <div class="card rounded-4 shadow-lg overflow-hidden flex-fill card-hover-effect h-100">
+                                <div class="position-relative" style="height: 250px; width: 100%;">
+                                    <img src="https://images.unsplash.com/photo-1586075494917-81f7ac525075?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top h-100 w-100 object-fit-cover" alt="Landscape Design" loading="lazy">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);"></div>
+                                    <div class="position-absolute bottom-0 start-0 p-4 text-white">
+                                        <div class="service-icon-wrapper"><i class="fas fa-drafting-compass"></i></div>
+                                        <h3 class="h4 fw-semibold">Landscape Design</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <p class="card-text text-secondary mb-3 flex-grow-1">Custom tropical paradise designs tailored to your style and property, maximizing beauty and functionality.</p>
+                                    <a href="#contact" class="btn text-decoration-none fw-semibold p-0 mt-auto" style="color: var(--bs-primary-green);">
+                                        Learn More <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="card rounded-4 shadow-lg overflow-hidden flex-fill card-hover-effect h-100">
+                                <div class="position-relative" style="height: 250px; width: 100%;">
+                                    <img src="https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top h-100 w-100 object-fit-cover" alt="Garden Maintenance" loading="lazy">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);"></div>
+                                    <div class="position-absolute bottom-0 start-0 p-4 text-white">
+                                        <div class="service-icon-wrapper"><i class="fas fa-seedling"></i></div>
+                                        <h3 class="h4 fw-semibold">Garden Maintenance</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <p class="card-text text-secondary mb-3 flex-grow-1">Regular upkeep to keep your garden vibrant and pristine year-round, ensuring its health and beauty.</p>
+                                    <a href="#contact" class="btn text-decoration-none fw-semibold p-0 mt-auto" style="color: var(--bs-primary-green);">
+                                        Learn More <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="card rounded-4 shadow-lg overflow-hidden flex-fill card-hover-effect h-100">
+                                <div class="position-relative" style="height: 250px; width: 100%;">
+                                    <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top h-100 w-100 object-fit-cover" alt="Irrigation Systems" loading="lazy">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);"></div>
+                                    <div class="position-absolute bottom-0 start-0 p-4 text-white">
+                                        <div class="service-icon-wrapper"><i class="fas fa-tint"></i></div>
+                                        <h3 class="h4 fw-semibold">Irrigation Systems</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <p class="card-text text-secondary mb-3 flex-grow-1">Smart, efficient watering solutions for sustainable and thriving gardens, conserving water and promoting growth.</p>
+                                    <a href="#contact" class="btn text-decoration-none fw-semibold p-0 mt-auto" style="color: var(--bs-primary-green);">
+                                        Learn More <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="card rounded-4 shadow-lg overflow-hidden flex-fill card-hover-effect h-100">
+                                <div class="position-relative" style="height: 250px; width: 100%;">
+                                    <img src="https://images.unsplash.com/photo-1589029898441-4367e6bb18d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top h-100 w-100 object-fit-cover" alt="Hardscaping" loading="lazy">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);"></div>
+                                    <div class="position-absolute bottom-0 start-0 p-4 text-white">
+                                        <div class="service-icon-wrapper"><i class="fas fa-hard-hat"></i></div>
+                                        <h3 class="h4 fw-semibold">Hardscaping</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <p class="card-text text-secondary mb-3 flex-grow-1">Beautiful pathways, patios, retaining walls, and structural elements that enhance your outdoor living experience.</p>
+                                    <a href="#contact" class="btn text-decoration-none fw-semibold p-0 mt-auto" style="color: var(--bs-primary-green);">
+                                        Learn More <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="card rounded-4 shadow-lg overflow-hidden flex-fill card-hover-effect h-100">
+                                <div class="position-relative" style="height: 250px; width: 100%;">
+                                    <img src="https://images.unsplash.com/photo-1607367401179-b4f951caf830?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top h-100 w-100 object-fit-cover" alt="Tree Trimming & Care" loading="lazy">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);"></div>
+                                    <div class="position-absolute bottom-0 start-0 p-4 text-white">
+                                        <div class="service-icon-wrapper"><i class="fas fa-tree"></i></div>
+                                        <h3 class="h4 fw-semibold">Tree Trimming & Care</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <p class="card-text text-secondary mb-3 flex-grow-1">Professional tree shaping, health assessments, and maintenance to ensure the longevity and beauty of your trees.</p>
+                                    <a href="#contact" class="btn text-decoration-none fw-semibold p-0 mt-auto" style="color: var(--bs-primary-green);">
+                                        Learn More <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0.5s;">
+                            <div class="card rounded-4 shadow-lg overflow-hidden flex-fill card-hover-effect h-100">
+                                <div class="position-relative" style="height: 250px; width: 100%;">
+                                    <img src="https://images.unsplash.com/photo-1507201710091-5973ca53c753?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top h-100 w-100 object-fit-cover" alt="Outdoor Lighting" loading="lazy">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);"></div>
+                                    <div class="position-absolute bottom-0 start-0 p-4 text-white">
+                                        <div class="service-icon-wrapper"><i class="fas fa-lightbulb"></i></div>
+                                        <h3 class="h4 fw-semibold">Outdoor Lighting</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <p class="card-text text-secondary mb-3 flex-grow-1">Elegant lighting solutions to enhance beauty and security, transforming your outdoor space after sunset.</p>
+                                    <a href="#contact" class="btn text-decoration-none fw-semibold p-0 mt-auto" style="color: var(--bs-primary-green);">
+                                        Learn More <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="py-5 py-lg-6 bg-white">
+                <div class="container px-4 px-md-5 px-lg-5 my-5">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6 fade-in-up">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1313&q=80" alt="Miami Green Scape Team" class="img-fluid rounded-4 shadow-lg" style="max-height: 600px; object-fit: cover;">
+                        </div>
+                        <div class="col-lg-6 fade-in-up" style="animation-delay: 0.2s;">
+                            <h2 class="display-4 fw-bold mb-4" style="color: var(--bs-darker-green-bg);">Your Vision, Our Expertise.</h2>
+                            <p class="lead text-secondary mb-4">
+                                At Miami Green Scape, we believe that your outdoor space should be a reflection of your personality and a sanctuary for relaxation and enjoyment. With years of experience serving the Miami area, our passionate team brings creativity, expertise, and meticulous attention to detail to every project.
+                            </p>
+                            <ul class="list-unstyled space-y-3 mb-5">
+                                <li class="d-flex align-items-start mb-3 fs-5"><i class="fas fa-check-circle me-3" style="color: var(--bs-accent-green); margin-top: 0.35rem;"></i><span>Licensed & Insured Professionals ensuring peace of mind.</span></li>
+                                <li class="d-flex align-items-start mb-3 fs-5"><i class="fas fa-check-circle me-3" style="color: var(--bs-accent-green); margin-top: 0.35rem;"></i><span>Eco-Friendly & Sustainable Practices for a greener future.</span></li>
+                                <li class="d-flex align-items-start mb-3 fs-5"><i class="fas fa-check-circle me-3" style="color: var(--bs-accent-green); margin-top: 0.35rem;"></i><span>Award-Winning & Innovative Designs that stand out.</span></li>
+                                <li class="d-flex align-items-start mb-3 fs-5"><i class="fas fa-check-circle me-3" style="color: var(--bs-accent-green); margin-top: 0.35rem;"></i><span>Unwavering Commitment to Client Satisfaction.</span></li>
+                            </ul>
+                            <a href="#contact" class="btn btn-secondary-custom btn-md px-5 py-3 rounded-pill shadow-md">
+                                Discuss Your Project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gardening Article Section (New) -->
+            <section id="gardening-article" class="py-5 py-lg-6" style="background-color: var(--bs-light-grey);">
+                <div class="container px-4 px-md-5 px-lg-5 my-5">
+                    <div class="text-center mb-5 fade-in-up">
+                        <h2 class="display-4 fw-bold mb-4" style="color: var(--bs-darker-green-bg);">Gardening Tips & Inspiration</h2>
+                        <p class="fs-5 text-secondary mx-auto" style="max-width: 800px;">Explore our latest articles for expert advice, seasonal tips, and inspiration to nurture your Miami garden.</p>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0s;">
+                            <div class="card rounded-4 shadow-lg overflow-hidden flex-fill card-hover-effect">
+                                <img src="https://images.unsplash.com/photo-1507201710091-5973ca53c753?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Miami Planting Guide" style="height: 200px; object-fit: cover;">
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <h5 class="card-title h4 fw-semibold mb-2" style="color: var(--bs-darker-green-bg);">Essential Plants for a Miami Garden</h5>
+                                    <p class="card-text text-secondary mb-3 flex-grow-1">Discover the best tropical plants that thrive in South Florida's unique climate and add vibrant color to your landscape.</p>
+                                    <a href="#" class="btn text-decoration-none fw-semibold p-0 mt-auto" style="color: var(--bs-primary-green);">
+                                        Read Article <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="card rounded-4 shadow-lg overflow-hidden flex-fill card-hover-effect">
+                                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Watering Tips" style="height: 200px; object-fit: cover;">
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <h5 class="card-title h4 fw-semibold mb-2" style="color: var(--bs-darker-green-bg);">Smart Watering for Miami Landscapes</h5>
+                                    <p class="card-text text-secondary mb-3 flex-grow-1">Learn how to optimize your irrigation system and watering schedule to keep your garden lush while conserving water.</p>
+                                    <a href="#" class="btn text-decoration-none fw-semibold p-0 mt-auto" style="color: var(--bs-primary-green);">
+                                        Read Article <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="card rounded-4 shadow-lg overflow-hidden flex-fill card-hover-effect">
+                                <img src="https://images.unsplash.com/photo-1586075494917-81f7ac525075?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Pest Control" style="height: 200px; object-fit: cover;">
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <h5 class="card-title h4 fw-semibold mb-2" style="color: var(--bs-darker-green-bg);">Natural Pest Control for Your Garden</h5>
+                                    <p class="card-text text-secondary mb-3 flex-grow-1">Effective and eco-friendly ways to keep common garden pests at bay, protecting your plants naturally.</p>
+                                    <a href="#" class="btn text-decoration-none fw-semibold p-0 mt-auto" style="color: var(--bs-primary-green);">
+                                        Read Article <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="py-5 py-lg-6" style="background-color: var(--bs-light-grey);">
+                <div class="container px-4 px-md-5 px-lg-5 my-5">
+                    <div class="text-center mb-5 fade-in-up">
+                        <h2 class="display-4 fw-bold mb-4" style="color: var(--bs-darker-green-bg);">Kind Words From Our Clients</h2>
+                        <p class="fs-5 text-secondary mx-auto" style="max-width: 800px;">We're proud of the relationships we build and the beautiful spaces we create, as reflected in their feedback.</p>
+                    </div>
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0s;">
+                            <div class="testimonial-card rounded-4 shadow-lg flex-fill card-hover-effect">
+                                <div class="d-flex mb-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text-secondary fst-italic mb-4 lh-base">"Miami Green Scape transformed our backyard into a stunning tropical oasis. Their attention to detail and creativity exceeded all our expectations!"</p>
+                                <div class="text-end">
+                                    <p class="fw-bold fs-5 mb-0" style="color: var(--bs-darker-green-bg);">Sarah Rodriguez</p>
+                                    <p class="text-muted small">Homeowner, Coral Gables</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0.15s;">
+                            <div class="testimonial-card rounded-4 shadow-lg flex-fill card-hover-effect">
+                                <div class="d-flex mb-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text-secondary fst-italic mb-4 lh-base">"Professional, reliable, and always delivering exceptional quality. Our properties have never looked better. Highly recommended for any landscaping needs."</p>
+                                <div class="text-end">
+                                    <p class="fw-bold fs-5 mb-0" style="color: var(--bs-darker-green-bg);">Michael Chen</p>
+                                    <p class="text-muted small">Property Manager, Miami Beach</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 d-flex fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="testimonial-card rounded-4 shadow-lg flex-fill card-hover-effect">
+                                <div class="d-flex mb-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text-secondary fst-italic mb-4 lh-base">"They created an amazing outdoor dining space that our customers absolutely love. The design perfectly captures the Miami vibe. Fantastic work!"</p>
+                                <div class="text-end">
+                                    <p class="fw-bold fs-5 mb-0" style="color: var(--bs-darker-green-bg);">Isabella Martinez</p>
+                                    <p class="text-muted small">Restaurant Owner, Wynwood</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-5 py-lg-6" style="background-color: var(--bs-darker-green-bg); color: var(--bs-light-text);">
+                <div class="container px-4 px-md-5 px-lg-5 my-5">
+                    <div class="mx-auto text-center fade-in-up" style="max-width: 800px;">
+                        <h2 class="display-4 fw-bold mb-4 text-white">Ready to Create Your Dream Landscape?</h2>
+                        <p class="fs-5 mb-5" style="color: #D3D3D3;">Contact us today for a complimentary consultation and let's bring your vision to life.</p>
+                        <form class="p-5 rounded-4 shadow-lg" style="background-color: rgba(255, 255, 255, 0.1);">
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control form-control-custom rounded-pill" placeholder="Full Name" name="name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control form-control-custom rounded-pill" placeholder="Email Address" name="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <input type="tel" class="form-control form-control-custom rounded-pill" placeholder="Phone Number (Optional)" name="phone">
+                            </div>
+                            <div class="mb-5">
+                                <textarea class="form-control form-control-custom rounded-4" placeholder="Tell us about your project..." rows="4" name="message" required style="min-height: 140px;"></textarea>
+                            </div>
+                            <button class="btn btn-secondary-custom btn-lg fw-bold px-5 py-3 rounded-pill shadow-lg w-100" type="submit">
+                                Send Message & Get Quote
+                            </button>
+                        </form>
+                         <div class="mt-5 text-center" style="color: #D3D3D3;">
+                            <p class="fs-4 mb-2">Or reach us directly:</p>
+                            <p class="fs-5 mb-2"><i class="fas fa-phone me-2" style="color: var(--bs-accent-green);"></i> (305) 123-4567</p>
+                            <p class="fs-5 mb-2"><i class="fas fa-envelope me-2" style="color: var(--bs-accent-green);"></i> contact@miamigreenscape.com</p>
+                            <p class="fs-5"><i class="fas fa-map-marker-alt me-2" style="color: var(--bs-accent-green);"></i> Serving the Greater Miami Area</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-5" style="background-color: var(--bs-dark-green); color: #B0B0B0;">
+            <div class="container px-4 px-md-5 px-lg-5 text-center">
+                <div class="mb-4">
+                    <a href="#" class="d-flex align-items-center justify-content-center text-white text-decoration-none fs-4 fw-bold mb-3">
+                         <i class="fas fa-leaf me-2" style="color: var(--bs-accent-green);"></i>Miami Green Scape
+                    </a>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://www.facebook.com/azakin.sejour" target="_blank" rel="noopener noreferrer" class="text-white mx-3" style="font-size: 1.75rem; transition: color 0.3s ease;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@MiamiLovesGreenLandscaping" target="_blank" rel="noopener noreferrer" class="text-white mx-3" style="font-size: 1.75rem; transition: color 0.3s ease;">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-white mx-3" style="font-size: 1.75rem; transition: color 0.3s ease;"> <!-- Placeholder for Instagram -->
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="small mb-1">© <span id="currentYear"></span> Miami Green Scape. All Rights Reserved.</p>
+                <p class="small text-muted mt-1">Designed with <i class="fas fa-heart text-danger"></i> in Miami.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper (required for navbar collapse, dropdowns, etc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eCEYPTBq+3u95Qy24eSHo" crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Simple fade-in animation on scroll using Intersection Observer
+        const faders = document.querySelectorAll('.fade-in-up');
+        const appearOptions = {
+            threshold: 0.2, /* Trigger when 20% of the element is visible */
+            rootMargin: "0px 0px -50px 0px" /* Slightly reduces viewport for earlier trigger */
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('is-visible'); /* Adds class to trigger animation */
+                    appearOnScroll.unobserve(entry.target); /* Stop observing once animated */
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Basic ScrollSpy for active nav links (optional, but enhances UX)
+        // More robust ScrollSpy usually uses Bootstrap's data-bs-spy, but for inline, we'll do manual
+        const sections = document.querySelectorAll('main section');
+        const navLinks = document.querySelectorAll('.nav-link-custom');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - (window.innerHeight * 0.3); // Adjust for offset
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
